@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 
 class PostController extends Controller
 {
-    public function relevance(Request $request)
+    public function relevance(string $keyword)
     {
         $response = Http::get(env('FAKE_API_URL').'/posts');
 
@@ -16,9 +16,9 @@ class PostController extends Controller
 
         $posts = json_decode($body);
 
-        $relevance = Post::relevance($posts);
+        $relevance = Post::relevance($keyword, $posts);
 
-        // TODO
+        echo $relevance;
 
         exit;
     }
