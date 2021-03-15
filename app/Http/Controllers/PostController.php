@@ -24,12 +24,11 @@ class PostController extends Controller
             case 200:
                 $posts = json_decode($response->body());
                 $csv = $this->postRepository->csv($keyword, $posts);
-
-                // TODO
-
-                echo $csv;
-
-                exit;
+                $headers = [
+                    'Content-type'        => 'text/csv',
+                    'Content-Disposition' => 'attachment; filename="download.csv"',
+                ];
+                return response()->make($csv, Response::HTTP_OK, $headers);
 
             default:
                 return response()->json([
@@ -51,6 +50,7 @@ class PostController extends Controller
                         $keyword => $relevance,
                     ], Response::HTTP_OK
                 );
+                
             default:
                 return response()->json([
                         'message' => 'Whoops! Something went wrong, please try again later.'
