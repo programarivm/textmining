@@ -2,11 +2,15 @@
 
 API to get statistics from texts.
 
-### 1. Before You Begin
-
 Clone the repo:
 
     $ git clone git@github.com:programarivm/textmining.git
+
+### 1. Before You Begin
+
+Create an `.env` file:
+
+    $ cp .env.example .env
 
 Build the Docker containers:
 
