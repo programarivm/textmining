@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  php_fpm:
+      build: .
+      container_name: posting_api_php_fpm
+      ports:
+        - 8000:8000
+      restart: always
+      working_dir: /usr/share/nginx/posting-api
+      volumes:
+          - ./:/usr/share/nginx/posting-api
+          - ./docker/php/php.ini:/usr/local/etc/php/php.ini
