@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\Interfaces\PostRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Symfony\Component\HttpFoundation\Response;
 
 class PostController extends Controller
 {
@@ -19,14 +20,19 @@ class PostController extends Controller
     {
         $response = Http::get(env('FAKE_API_URL').'/posts');
 
-        $body = $response->body();
-
-        $posts = json_decode($body);
-
-        $relevance = $this->postRepository->relevance($keyword, $posts, $userId);
-
-        echo $relevance;
-
-        exit;
+        switch ($response->status()) {
+            case 200:
+                $posts = json_decode($response->body());
+                $relevance = $this->postRepository->relevance($keyword, $posts, $userId);
+                return response()->json([
+                        $keyword => $relevance,
+                    ], Response::HTTP_OK
+                );
+            default:
+                return response()->json([
+                        'message' => 'Whoops! Something went wrong, please try again later.'
+                    ], Response::HTTP_INTERNAL_SERVER_ERROR
+                );
+        }
     }
 }
