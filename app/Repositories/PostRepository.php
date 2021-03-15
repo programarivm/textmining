@@ -40,11 +40,25 @@ class PostRepository implements PostRepositoryInterface
 
     public function csv(string $keyword, array $posts)
     {
-        $result = 'TODO';
+        $csv = '';
+        $result = [];
+        foreach ($posts as $post) {
+            $relevance = $this->count($post->title, $keyword) * 2 + $this->count($post->body, $keyword);
+            $result[] = [
+                'user_id' => $post->userId,
+                'post_title' => $post->title,
+                'relevance' => $relevance,
+            ];
+        }
+        
+        $relevance = array_column($result, 'relevance');
+        array_multisort($relevance, SORT_DESC, $result);
 
-        // TODO
+        foreach($result as $item) {
+            $csv .= implode(",", $item) . PHP_EOL;
+        }
 
-        return $result;
+        return $csv;
     }
 
     public function relevance(string $keyword, array $posts, int $userId = null)

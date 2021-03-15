@@ -29,7 +29,7 @@ Find out your PHP container IP and run the built-in Laravel web server on port `
 Endpoint | HTTP Verb | Description
 -------- | --------- | -----------
 `api/post/relevance/{keyword}/{user_id?}` | `GET` | Gets the keyword relevance as per the occurrences found in the posts' title and body
-`api/post/csv/{keyword}` | `GET` | Builds a CSV file containing the keyword relevance by user
+`api/post/csv/{keyword}` | `GET` | Downloads a CSV file containing the keyword relevance by user
 
 ### Examples
 
@@ -42,3 +42,7 @@ Gets the relevance of the keyword `sunt` in all posts with `user_id` equal to `1
 
     $ curl http://172.18.0.2:8000/api/post/relevance/sunt/1
     $ {"sunt":6}
+
+Downloads a CSV file containing a list of users ordered by keyword relevance in their posts:
+
+    $ curl http://172.18.0.2:8000/api/post/csv/veritatis
