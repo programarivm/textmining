@@ -1,6 +1,6 @@
 ## Text-Mining API
 
-API to get statistics from texts.
+API that works out statistical data from texts.
 
 Clone the repo:
 
