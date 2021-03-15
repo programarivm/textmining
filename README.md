@@ -46,3 +46,16 @@ Gets the relevance of the keyword `sunt` in all posts with `user_id` equal to `1
 Downloads a CSV file containing a list of users ordered by keyword relevance in their posts:
 
     $ curl http://172.18.0.2:8000/api/post/csv/veritatis
+    6,consequatur placeat omnis quisquam quia reprehenderit fugit veritatis facere,2
+    7,repudiandae ea animi iusto,2
+    8,quam voluptatibus rerum veritatis,2
+    9,dolore veritatis porro provident adipisci blanditiis et sunt,2
+    9,optio ipsam molestias necessitatibus occaecati facilis veritatis dolores aut,2
+    9,tempora rem veritatis voluptas quo dolores vero,2
+    1,optio molestias id quia eum,1
+    2,doloribus ad provident suscipit at,1
+    3,maxime id vitae nihil numquam,1
+    5,laborum non sunt aut ut assumenda perspiciatis voluptas,1
+    6,ut quo aut ducimus alias,1
+    10,laboriosam dolor voluptates,1
+    1,dolorem dolore est ipsam,0
