@@ -21,7 +21,7 @@ class PostController extends Controller
         $response = Http::get(env('FAKE_API_URL').'/posts');
 
         switch ($response->status()) {
-            case 200:
+            case Response::HTTP_OK:
                 $posts = json_decode($response->body());
                 $csv = $this->postRepository->csv($keyword, $posts);
                 $headers = [
@@ -43,14 +43,14 @@ class PostController extends Controller
         $response = Http::get(env('FAKE_API_URL').'/posts');
 
         switch ($response->status()) {
-            case 200:
+            case Response::HTTP_OK:
                 $posts = json_decode($response->body());
                 $relevance = $this->postRepository->relevance($keyword, $posts, $userId);
                 return response()->json([
                         $keyword => $relevance,
                     ], Response::HTTP_OK
                 );
-                
+
             default:
                 return response()->json([
                         'message' => 'Whoops! Something went wrong, please try again later.'
