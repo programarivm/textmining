@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -13,11 +14,11 @@ class PostController extends Controller
 
         $body = $response->body();
 
-        $arr = json_decode($body);
+        $posts = json_decode($body);
+
+        $relevance = Post::relevance($posts);
 
         // TODO
-
-        print_r($arr);
 
         exit;
     }
