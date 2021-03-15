@@ -16,6 +16,29 @@ class PostController extends Controller
         $this->postRepository = $postRepository;
     }
 
+    public function csv(string $keyword)
+    {
+        $response = Http::get(env('FAKE_API_URL').'/posts');
+
+        switch ($response->status()) {
+            case 200:
+                $posts = json_decode($response->body());
+                $csv = $this->postRepository->csv($keyword, $posts);
+
+                // TODO
+
+                echo $csv;
+
+                exit;
+
+            default:
+                return response()->json([
+                        'message' => 'Whoops! Something went wrong, please try again later.'
+                    ], Response::HTTP_INTERNAL_SERVER_ERROR
+                );
+        }
+    }
+
     public function relevance(string $keyword, string $userId = null)
     {
         $response = Http::get(env('FAKE_API_URL').'/posts');

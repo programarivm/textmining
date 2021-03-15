@@ -38,6 +38,15 @@ class PostRepository implements PostRepositoryInterface
         return $result;
     }
 
+    public function csv(string $keyword, array $posts)
+    {
+        $result = 'TODO';
+
+        // TODO
+
+        return $result;
+    }
+
     public function relevance(string $keyword, array $posts, int $userId = null)
     {
         $userId ? $result = $this->byUser($keyword, $posts, $userId) : $result = $this->all($keyword, $posts);
